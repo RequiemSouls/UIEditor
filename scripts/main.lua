@@ -4,9 +4,9 @@ dofile("./scripts/util/functionutils.lua")
 FrameCount = 0
 Components = {}
 
-StartUUID = 0
-NeedReload = true
-CurrentUIFile = nil
+SaveFilePath = nil
+ResourceRootPath = nil
+ResourceCache = {}
 DisplayTree = nil
 SelectNode = nil
 LogData = {}
@@ -22,18 +22,17 @@ function renderRoot()
     dofile("./scripts/util/functionutils.lua")
 
     dofile("./scripts/panel/displaypanel.lua")
+    dofile("./scripts/panel/scenepanel.lua")
     dofile("./scripts/panel/propertypanel.lua")
     dofile("./scripts/panel/commonpanel.lua")
     ShowLogPanel()
 
     dofile("./scripts/component/compbase.lua")
     dofile("./scripts/data/datamgr.lua")
+    dofile("./scripts/data/resmgr.lua")
     FrameCount = FrameCount + 1
 
-    if NeedReload then
-        ReloadData()
-        ShowReload()
-    end
+    ShowReload()
 
     dofile("./scripts/render.lua")
 end

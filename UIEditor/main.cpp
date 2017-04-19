@@ -7,6 +7,7 @@
 #include <GLFW/glfw3.h>
 #include <lua.hpp>
 #include <imgui_lua_bindings.cpp>
+#include <freeimage.h>
 
 static void error_callback(int error, const char* description)
 {
@@ -53,10 +54,25 @@ int create_input_lua(lua_State* L)
     return 2;
 }
 
+int create_texture_lua(lua_State* L)
+{
+    const char* filepath = luaL_checkstring(L, 1);
+    FIBITMAP* bitmap = FreeImage_Load(FreeImage_GetFileType(filepath, 0), filepath);
+    int width = FreeImage_GetWidth(bitmap);
+    int height = FreeImage_GetHeight(bitmap);
+    unsigned char *pixels = (unsigned char*)FreeImage_GetBits(bitmap);
+    unsigned int id = Imgui_ImplGlfw_CreateGLTex(width, height, pixels);
+    lua_pushinteger(L, id);
+    lua_pushinteger(L, width);
+    lua_pushinteger(L, height);
+    return 3;
+}
+
 void lua_binding(lua_State* L)
 {
     luaL_Reg guilib[] = {
         {"CreateInput", create_input_lua},
+        {"CreateTexture", create_texture_lua},
         {NULL, NULL}
     };
     lua_getglobal(L, "imgui");
@@ -74,16 +90,6 @@ int main(int, char**)
 
     // Setup ImGui binding
     ImGui_ImplGlfw_Init(window, true);
-
-    // Load Fonts
-    // (there is a default font, this is only if you want to change it. see extra_fonts/README.txt for more details)
-    //ImGuiIO& io = ImGui::GetIO();
-    //io.Fonts->AddFontDefault();
-    //io.Fonts->AddFontFromFileTTF("../../extra_fonts/Cousine-Regular.ttf", 15.0f);
-    //io.Fonts->AddFontFromFileTTF("../../extra_fonts/DroidSans.ttf", 16.0f);
-    //io.Fonts->AddFontFromFileTTF("../../extra_fonts/ProggyClean.ttf", 13.0f);
-    //io.Fonts->AddFontFromFileTTF("../../extra_fonts/ProggyTiny.ttf", 10.0f);
-    //io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\ArialUni.ttf", 18.0f, NULL, io.Fonts->GetGlyphRangesJapanese());
 
     bool show_test_window = true;
     bool show_another_window = false;

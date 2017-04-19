@@ -27,3 +27,5 @@ IMGUI_API void        ImGui_ImplGlfw_MouseButtonCallback(GLFWwindow* window, int
 IMGUI_API void        ImGui_ImplGlfw_ScrollCallback(GLFWwindow* window, double xoffset, double yoffset);
 IMGUI_API void        ImGui_ImplGlFw_KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
 IMGUI_API void        ImGui_ImplGlfw_CharCallback(GLFWwindow* window, unsigned int c);
+IMGUI_API unsigned int Imgui_ImplGlfw_CreateGLTex(int width, int height, unsigned char *pixels);
+IMGUI_API void Imgui_ImplGlfw_DeleteGLTex(unsigned int id);

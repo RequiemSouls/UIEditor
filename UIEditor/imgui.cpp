@@ -6979,6 +6979,16 @@ bool ImGui::DragFloatN(const char* label, float* v, int components, float v_spee
     return value_changed;
 }
 
+
+bool ImGui::DragFloat2(const char* label, float *x, float *y, float v_speed, float v_min, float v_max, const char* display_format, float power)
+{
+    float v[2] = {*x, *y};
+    bool ret = DragFloatN(label, v, 2, v_speed, v_min, v_max, display_format, power);
+    *x = v[0];
+    *y = v[1];
+    return ret;
+}
+
 bool ImGui::DragFloat2(const char* label, float v[2], float v_speed, float v_min, float v_max, const char* display_format, float power)
 {
     return DragFloatN(label, v, 2, v_speed, v_min, v_max, display_format, power);

@@ -786,6 +786,20 @@ END_FLOAT_POINTER(v)
 END_IMGUI_FUNC
 //    IMGUI_API bool          DragFloat2(const char* label, float v[2], float v_speed = 1.0f, float v_min = 0.0f, float v_max = 0.0f, const char* display_format = "%.3f", float power = 1.0f);
 // Unsupported arg type  float v[2]
+IMGUI_FUNCTION(DragFloat2)
+LABEL_ARG(label)
+FLOAT_POINTER_ARG(x)
+FLOAT_POINTER_ARG(y)
+OPTIONAL_NUMBER_ARG(v_speed, 1.0f)
+  OPTIONAL_NUMBER_ARG(v_min, 0.0f)
+  OPTIONAL_NUMBER_ARG(v_max, 0.0f)
+OPTIONAL_LABEL_ARG(display_format)
+OPTIONAL_NUMBER_ARG(power, 1.0f)
+CALL_FUNCTION(DragFloat2, bool, label, x, y, v_speed, v_min, v_max, display_format, power)
+PUSH_BOOL(ret)
+END_FLOAT_POINTER(x)
+END_FLOAT_POINTER(y)
+END_IMGUI_FUNC
 //    IMGUI_API bool          DragFloat3(const char* label, float v[3], float v_speed = 1.0f, float v_min = 0.0f, float v_max = 0.0f, const char* display_format = "%.3f", float power = 1.0f);
 // Unsupported arg type  float v[3]
 //    IMGUI_API bool          DragFloat4(const char* label, float v[4], float v_speed = 1.0f, float v_min = 0.0f, float v_max = 0.0f, const char* display_format = "%.3f", float power = 1.0f);
@@ -813,7 +827,7 @@ INT_POINTER_ARG(v)
 OPTIONAL_NUMBER_ARG(v_speed, 1.0f)
 OPTIONAL_INT_ARG(v_min, 0)
 OPTIONAL_INT_ARG(v_max, 0)
-LABEL_ARG(display_format)
+OPTIONAL_LABEL_ARG(display_format)
 CALL_FUNCTION(DragInt, bool, label, v, v_speed, v_min, v_max, display_format)
 PUSH_BOOL(ret)
 END_INT_POINTER(v)

@@ -289,3 +289,27 @@ void ImGui_ImplGlfw_NewFrame()
     // Start the frame
     ImGui::NewFrame();
 }
+
+void Imgui_ImplGlfw_DeleteGLTex(unsigned int id)
+{
+    glDeleteTextures(1, &id);
+}
+
+unsigned int Imgui_ImplGlfw_CreateGLTex(int width, int height, unsigned char *pixels)
+{
+    GLuint id = 0;
+    // Upload texture to graphics system
+    GLint last_texture;
+    glGetIntegerv(GL_TEXTURE_BINDING_2D, &last_texture);
+    glGenTextures(1, &id);
+    glBindTexture(GL_TEXTURE_2D, id);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+//    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_BGRA, GL_UNSIGNED_BYTE, pixels);
+
+    // Restore state
+    glBindTexture(GL_TEXTURE_2D, last_texture);
+
+    return id;
+}

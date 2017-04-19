@@ -22,18 +22,19 @@ if imgui.Button("Add Button on selected") then
 end
 
 ShowDisplayPanel()
-if ShowSavePath then
+ShowProperty()
+ShowScenePanel()
+
+if not SaveFilePath then
     ShowSavePathPanel()
 end
-ShowProperty()
--- imgui.SameLine()
--- if imgui.TreeNode("Test trees") then
---     for i=1, 5 do
---         if (imgui.TreeNode(i, "Child %d", i)) then
---             imgui.Text("blabla")
---             imgui.TreePop()
---         end
---     end
---     imgui.TreePop()
--- end
+if not ResourceRootPath then
+    ShowSelectResRootPanel()
+end
+
+for k,v in pairs(imgui) do
+    if string.find(k, "Draw") then
+        imgui.Text(k)
+    end
+end
 imgui.End()

@@ -26,11 +26,19 @@ end
 
 function ShowSavePathPanel()
     imgui.Begin("Save Config")
-    local str = imgui.CreateInput("input file path", "save path", CurrentUIFile or "")
+    local _, str = imgui.CreateInput("save path", SaveFilePath or "")
     if imgui.IsKeyPressed(257) then
-        CurrentUIFile = str
-        ShowSavePath = false
+        SaveFilePath = str
         SaveConfig()
+    end
+    imgui.End()
+end
+
+function ShowSelectResRootPanel()
+    imgui.Begin("Select Resource Root Path")
+    local _, str = imgui.CreateInput("res root path", ResourceRootPath or "/Users/zhe/Documents/qile/trunk/Poker/res/ui/")
+    if imgui.IsKeyPressed(257) then
+        ResourceRootPath = str
     end
     imgui.End()
 end

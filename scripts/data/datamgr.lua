@@ -1,29 +1,19 @@
-function ReloadData()
-    if not CurrentUIFile then
-        return
-    end
-
-    LoadConfig(CurrentUIFile)
-end
-
 function LoadConfig(filepath)
     NeedReload = false
     local f, errorMsg, errorCode = io.open(filepath, "r")
     if not f then
-        CurrentUIFile = nil
         Error(string.format("load config file [ %s ] error : %s", filepath, errorMsg))
         return
     end
 
-    CurrentUIFile = filepath
+    SaveFilePath = filepath
     local configstr = f:read("*all")
     f:close()
     DisplayTree = JSON:decode(configstr)
 end
 
-function NewConfig(filepath)
+function NewConfig()
     NeedReload = false
-    CurrentUIFile = filepath
     DisplayTree = CreateNode(CompBase)
 end
 
@@ -36,13 +26,12 @@ function GetUUID()
 end
 
 function SaveConfig()
-    if CurrentUIFile == nil then
-        ShowSavePath = true
+    if not SaveFilePath then
         return
     end
-    local f, errorMsg, errorCode = io.open(CurrentUIFile, "w")
+    local f, errorMsg, errorCode = io.open(SaveFilePath, "w")
     if not f then
-        Error(string.format("save config file [ %s ] error : %s", CurrentUIFile, errorMsg))
+        Error(string.format("save config file [ %s ] error : %s", SaveFilePath, errorMsg))
         return
     end
 

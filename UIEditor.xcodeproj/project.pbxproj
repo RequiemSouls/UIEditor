@@ -16,6 +16,9 @@
 		E99941571EA0C12D007C918F /* imgui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E99941501EA0C12D007C918F /* imgui.cpp */; };
 		E99941581EA0C12D007C918F /* libglfw3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E99941521EA0C12D007C918F /* libglfw3.dylib */; };
 		E99941591EA0C12D007C918F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E99941531EA0C12D007C918F /* main.cpp */; };
+		E9F25B231EA62A28008867AE /* libjpeg.8.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E9F25B221EA62A28008867AE /* libjpeg.8.dylib */; };
+		E9F25B251EA62A3E008867AE /* libpng16.16.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E9F25B241EA62A3E008867AE /* libpng16.16.dylib */; };
+		E9F25B271EA705A7008867AE /* libfreeimage.3.17.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E9F25B261EA705A7008867AE /* libfreeimage.3.17.0.dylib */; };
 		E9F63AC61EA0CD0100550B1F /* liblua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E9F63AC51EA0CD0100550B1F /* liblua.dylib */; };
 		E9F63AC81EA0D73F00550B1F /* scripts in Resources */ = {isa = PBXBuildFile; fileRef = E9F63AC71EA0D73F00550B1F /* scripts */; };
 /* End PBXBuildFile section */
@@ -38,6 +41,9 @@
 		E99941511EA0C12D007C918F /* imgui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imgui.h; sourceTree = "<group>"; };
 		E99941521EA0C12D007C918F /* libglfw3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libglfw3.dylib; sourceTree = "<group>"; };
 		E99941531EA0C12D007C918F /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		E9F25B221EA62A28008867AE /* libjpeg.8.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libjpeg.8.dylib; path = ../../../../../usr/local/Cellar/jpeg/8d/lib/libjpeg.8.dylib; sourceTree = "<group>"; };
+		E9F25B241EA62A3E008867AE /* libpng16.16.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng16.16.dylib; path = ../../../../../usr/local/Cellar/libpng/1.6.29/lib/libpng16.16.dylib; sourceTree = "<group>"; };
+		E9F25B261EA705A7008867AE /* libfreeimage.3.17.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreeimage.3.17.0.dylib; path = ../../../../../usr/local/Cellar/freeimage/3.17.0/lib/libfreeimage.3.17.0.dylib; sourceTree = "<group>"; };
 		E9F63AC51EA0CD0100550B1F /* liblua.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liblua.dylib; path = UIEditor/liblua.dylib; sourceTree = "<group>"; };
 		E9F63AC71EA0D73F00550B1F /* scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = scripts; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -47,6 +53,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9F25B271EA705A7008867AE /* libfreeimage.3.17.0.dylib in Frameworks */,
+				E9F25B251EA62A3E008867AE /* libpng16.16.dylib in Frameworks */,
+				E9F25B231EA62A28008867AE /* libjpeg.8.dylib in Frameworks */,
 				E9F63AC61EA0CD0100550B1F /* liblua.dylib in Frameworks */,
 				E99941581EA0C12D007C918F /* libglfw3.dylib in Frameworks */,
 			);
@@ -107,6 +116,9 @@
 		E9F63AC41EA0CD0100550B1F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E9F25B261EA705A7008867AE /* libfreeimage.3.17.0.dylib */,
+				E9F25B241EA62A3E008867AE /* libpng16.16.dylib */,
+				E9F25B221EA62A28008867AE /* libjpeg.8.dylib */,
 				E9F63AC51EA0CD0100550B1F /* liblua.dylib */,
 			);
 			name = Frameworks;
@@ -303,6 +315,14 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 4268K227HN;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"cimg_OS=1",
+					"$(inherited)",
+					"cimg_display=0",
+					"cimg_use_jpeg=1",
+					"cimg_use_png=1",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/UIEditor",
@@ -314,6 +334,9 @@
 					/usr/local/lib,
 					"$(inherited)",
 					"$(PROJECT_DIR)/UIEditor",
+					/usr/local/Cellar/jpeg/8d/lib,
+					/usr/local/Cellar/libpng/1.6.29/lib,
+					/usr/local/Cellar/freeimage/3.17.0/lib,
 				);
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
@@ -332,6 +355,12 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 4268K227HN;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"cimg_display=0",
+					"cimg_OS=1",
+					"cimg_use_jpeg=1",
+					"cimg_use_png=1",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/UIEditor",
@@ -343,6 +372,9 @@
 					/usr/local/lib,
 					"$(inherited)",
 					"$(PROJECT_DIR)/UIEditor",
+					/usr/local/Cellar/jpeg/8d/lib,
+					/usr/local/Cellar/libpng/1.6.29/lib,
+					/usr/local/Cellar/freeimage/3.17.0/lib,
 				);
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";

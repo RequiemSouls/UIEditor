@@ -15,10 +15,11 @@ CompBase.type = {d = "CompBase", rv = false, t = "string"}
 CompBase.id = {d = 0, rv = false, t = "int"}
 CompBase.name = {d = "node", t = "string"}
 CompBase.parent = {d = -1, t = "int"}
+CompBase.anchor = {d = {0.5, 0.5}, t = "vec2"}
 CompBase.position = {d = {0.0, 0.0}, t = "vec2"}
-CompBase.scale = {d = {0.0, 0.0}, t = "vec2"}
+CompBase.scale = {d = {1.0, 1.0}, t = "vec2"}
 CompBase.rotation = {d = 0, t = "int"}
-CompBase.display = {d = "node.png", t = "texture"}
+CompBase.display = {d = "icon_red_mark.png", t = "texture"}
 
 Image = compClone(CompBase)
 Image.type = {d = "Image", rv = false, t = "string"}
