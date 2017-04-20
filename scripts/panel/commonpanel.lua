@@ -24,19 +24,22 @@ function ShowLogPanel()
     imgui.End()
 end
 
-function ShowSavePathPanel()
-    imgui.Begin("Save Config")
-    local _, str = imgui.CreateInput("save path", SaveFilePath or "")
+function ShowOpenFilePanel()
+    imgui.Begin("Open Config")
+    local isEdit, str = imgui.CreateInput("open path", SaveFilePath or "")
     if imgui.IsKeyPressed(257) then
         SaveFilePath = str
-        SaveConfig()
+        if not LoadConfig(str) then
+            SaveConfig()
+            LoadConfig(str)
+        end
     end
     imgui.End()
 end
 
 function ShowSelectResRootPanel()
     imgui.Begin("Select Resource Root Path")
-    local _, str = imgui.CreateInput("res root path", ResourceRootPath or "/Users/zhe/Documents/qile/trunk/Poker/res/ui/")
+    local isEdit, str = imgui.CreateInput("res root path", ResourceRootPath or "/Users/zhe/Documents/qile/trunk/Poker/")
     if imgui.IsKeyPressed(257) then
         ResourceRootPath = str
     end

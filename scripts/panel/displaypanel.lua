@@ -14,8 +14,8 @@
 --     //ImGuiTreeNodeFlags_NoScrollOnOpen     = 1 << 11,  // FIXME: TODO: Disable automatic scroll on TreePop() if node got just open and contents is not visible
 --     ImGuiTreeNodeFlags_CollapsingHeader     = ImGuiTreeNodeFlags_Framed | ImGuiTreeNodeFlags_NoAutoOpenOnLog
 -- };
-local SelectFlag = 64 + 32 + 1--1100001
-local UnSelectFlag = 64 + 32--1100000
+SelectFlag = 64 + 32 + 1--1100001
+UnSelectFlag = 64 + 32--1100000
 local function ShowNode(node)
     local flag = UnSelectFlag
     if node == SelectNode then

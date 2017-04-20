@@ -60,8 +60,11 @@ int create_texture_lua(lua_State* L)
     FIBITMAP* bitmap = FreeImage_Load(FreeImage_GetFileType(filepath, 0), filepath);
     int width = FreeImage_GetWidth(bitmap);
     int height = FreeImage_GetHeight(bitmap);
-    unsigned char *pixels = (unsigned char*)FreeImage_GetBits(bitmap);
+    FIBITMAP* bitmap32 = FreeImage_ConvertTo32Bits(bitmap);
+    unsigned char *pixels = (unsigned char*)FreeImage_GetBits(bitmap32);
     unsigned int id = Imgui_ImplGlfw_CreateGLTex(width, height, pixels);
+    FreeImage_Unload(bitmap);
+    FreeImage_Unload(bitmap32);
     lua_pushinteger(L, id);
     lua_pushinteger(L, width);
     lua_pushinteger(L, height);

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <imgui.h>
+#include <imgui_internal.h>
 #include <deque>
 
 extern "C" {

@@ -6,7 +6,7 @@ local function ShowNode(node, basex, basey, basesx, basesy)
     local sy = basesy * node.scale[2]
     if tex then
         local w = tex.w * sx
-        local h = tex.w * sy
+        local h = tex.h * sy
         local sx = x - w * node.anchor[1];
         local sy = y + h * node.anchor[2];
         local ex = sx + w
@@ -22,7 +22,8 @@ function ShowScenePanel()
     if DisplayTree then
         local x, y = imgui.GetWindowPos()
         local w, h = imgui.GetWindowSize()
-        ShowNode(DisplayTree, x, y + h, 1, 1)
+        local pandingx, pandingy = 10, 10
+        ShowNode(DisplayTree, x + pandingx, y + h - pandingy, globalScale, globalScale)
     end
     imgui.End()
 end

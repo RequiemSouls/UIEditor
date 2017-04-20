@@ -16,7 +16,78 @@ function AddNodeAtSelected(base)
 end
 
 function AddChild(parent, node)
+    if parent ~= DisplayTree then
+        node.parent = parent.id
+    end
     table.insert(parent.children, node)
+end
+
+function DeleteAction(action)
+    if SelectNode == nil then
+        return
+    end
+
+    for k, v in pairs(SelectNode.inAction) do
+        if v == action then
+            SelectNode.inAction[k] = nil
+        end
+    end
+    for k, v in pairs(SelectNode.outAction) do
+        if v == action then
+            SelectNode.outAction[k] = nil
+        end
+    end
+end
+
+function DeleteNode(node)
+    local parent = nil
+    if node.parent == -1 then
+        parent = DisplayTree
+    else
+        parent = FindNode(node.parent)
+        if parent == nil then
+            Error("Delete error node : " .. node.name .. " id : " .. node.id)
+            return
+        end
+    end
+    for k, v in pairs(parent.children) do
+        if v == node then
+            table.remove(parent.children, k)
+        end
+    end
+end
+
+function FindNode(id, root)
+    root = root or DisplayTree
+    if id == -1 then
+        return DisplayTree
+    end
+    if id == root.id then
+        return root
+    end
+    for _,child in ipairs(root.children) do
+        local node = FindNode(id, child)
+        if node then
+            return node
+        end
+    end
+    if root.inAction ~= nil then
+        for _,child in ipairs(root.inAction) do
+            local node = FindNode(id, child)
+            if node then
+                return node
+            end
+        end
+    end
+    if root.outAction ~= nil then
+        for _,child in ipairs(root.outAction) do
+            local node = FindNode(id, child)
+            if node then
+                return node
+            end
+        end
+    end
+    return nil
 end
 
 function CreateNode(base)

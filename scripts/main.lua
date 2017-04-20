@@ -9,6 +9,10 @@ ResourceRootPath = nil
 ResourceCache = {}
 DisplayTree = nil
 SelectNode = nil
+SelectAction = nil
+EditorAction = false
+FunFilter = ""
+globalScale = 0.5
 LogData = {}
 
 function __G__TRACKBACK__(errorMsg)
@@ -22,6 +26,7 @@ function renderRoot()
     dofile("./scripts/util/functionutils.lua")
 
     dofile("./scripts/panel/displaypanel.lua")
+    dofile("./scripts/panel/actioneditor.lua")
     dofile("./scripts/panel/scenepanel.lua")
     dofile("./scripts/panel/propertypanel.lua")
     dofile("./scripts/panel/commonpanel.lua")
@@ -32,7 +37,7 @@ function renderRoot()
     dofile("./scripts/data/resmgr.lua")
     FrameCount = FrameCount + 1
 
-    ShowReload()
+    -- ShowReload()
 
     dofile("./scripts/render.lua")
 end

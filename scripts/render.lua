@@ -3,11 +3,13 @@ imgui.ShowTestWindow(true)
 -- imgui.SetNextWindowSize(550, 680, ImGuiSetCond_Once);
 imgui.Begin("test", false, 0)
 if imgui.Button("newConfig") then
-    NewConfig("/Users/zhe/uiconfig.json")
+    NewConfig("res/ui/uiconfig.json")
 end
+imgui.SameLine()
 if imgui.Button("loadConfig") then
-    LoadConfig("/Users/zhe/uiconfig.json")
+    LoadConfig("res/ui/uiconfig.json")
 end
+imgui.SameLine()
 if imgui.Button("saveConfig") then
     SaveConfig()
 end
@@ -20,20 +22,27 @@ end
 if imgui.Button("Add Button on selected") then
     AddNodeAtSelected(Button)
 end
-
+if imgui.Button("Delete selected") then
+    DeleteNode(SelectNode)
+end
 ShowDisplayPanel()
-ShowProperty()
+ShowProperty(SelectNode)
+if SelectAction then
+    ShowProperty(SelectAction)
+end
 ShowScenePanel()
 
-if not SaveFilePath then
-    ShowSavePathPanel()
+if ResourceRootPath and not SaveFilePath then
+    ShowOpenFilePanel()
 end
 if not ResourceRootPath then
     ShowSelectResRootPanel()
 end
 
+imgui.Separator()
+_, FunFilter = imgui.CreateInput("filter", FunFilter)
 for k,v in pairs(imgui) do
-    if string.find(k, "Draw") then
+    if string.find(k, FunFilter) then
         imgui.Text(k)
     end
 end
