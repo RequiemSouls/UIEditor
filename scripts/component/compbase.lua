@@ -17,6 +17,7 @@ CompBase.parent = {d = -1, rv = false, t = "int"}
 CompBase.name = {d = "node", t = "string"}
 CompBase.anchor = {d = {0.5, 0.5}, t = "vec2"}
 CompBase.position = {d = {0.0, 0.0}, t = "vec2"}
+CompBase.zorder = {d = 0, t = "int"}
 CompBase.scale = {d = {1.0, 1.0}, t = "vec2"}
 CompBase.rotation = {d = 0, t = "int"}
 CompBase.inAction = {d = {}, t = "action"}
@@ -38,6 +39,7 @@ Base_action = {}
 Base_action.id = {d = 0, rv = false, t = "int"}
 Base_action.parent = {d = -1, rv = false, t = "int"}
 Base_action.time = {d = 1, t = "float"}
+Base_action.ease = {d = 0, t = "ease"}
 
 Delay_action = compClone(Base_action)
 Delay_action.type = {d = "Delay_action", rv = false, t = "string"}

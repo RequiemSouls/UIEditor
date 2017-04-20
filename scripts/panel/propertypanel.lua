@@ -19,6 +19,16 @@ function Editor.texture(node, key)
     _, node[key] = imgui.CreateInput(key.."###"..node.id .. key, node[key])
 end
 
+function Editor.ease(node, key)
+    local easeData = {"line","CCActionEase","CCEaseRateAction","CCEaseIn","CCEaseOut","CCEaseInOut",
+                      "CCEaseExponentialIn","CCEaseExponentialOut","CCEaseExponentialInOut",
+                      "CCEaseSineIn","CCEaseSineOut","CCEaseSineInOut","CCEaseElastic",
+                      "CCEaseElasticIn","CCEaseElasticOut","CCEaseElasticInOut","CCEaseBounce",
+                      "CCEaseBounceIn","CCEaseBounceOut","CCEaseBounceInOut","CCEaseBackIn",
+                      "CCEaseBackOut","CCEaseBackInOut"}
+    _, node[key] = imgui.Combo(key.."###"..node.id .. key, node[key], table.concat(easeData, "\0"))
+end
+
 function Editor.action(node, key)
     _, node[key].isOpen = imgui.Checkbox(key, node[key].isOpen);
     if node[key].isOpen then

@@ -25,6 +25,7 @@ local function ShowNode(node)
     if imgui.IsItemClicked() then
         Debug("select node id :" .. node.id)
         SelectNode = node
+        SelectAction = nil
     end
     if isOpen then
         for i,child in ipairs(node.children) do

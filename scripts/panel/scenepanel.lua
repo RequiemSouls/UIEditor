@@ -4,17 +4,21 @@ local function ShowNode(node, basex, basey, basesx, basesy)
     local y = basey - node.position[2] * basesy
     local sx = basesx * node.scale[1]
     local sy = basesy * node.scale[2]
+    local w = ( tex and tex.w or 0 ) * sx
+    local h = ( tex and tex.h or 0 ) * sy
+    local spx = x - w * node.anchor[1];
+    local spy = y + h * node.anchor[2];
+    local epx = spx + w
+    local epy = spy - h
     if tex then
-        local w = tex.w * sx
-        local h = tex.h * sy
-        local sx = x - w * node.anchor[1];
-        local sy = y + h * node.anchor[2];
-        local ex = sx + w
-        local ey = sy - h
-        imgui.DrawList_AddImage(tex.id, sx, sy, ex, ey, 0, 0, 1, 1, 0xffffffff)
+        imgui.DrawList_AddImage(tex.id, spx, spy, epx, epy, 0, 0, 1, 1, 0xffffffff)
     end
     for _, child in ipairs(node.children) do
-        ShowNode(child, x, y, sx, sy)
+        if node.type == "CompBase" then
+            ShowNode(child, x, y, sx, sy)
+        else
+            ShowNode(child, spx, spy, sx, sy)
+        end
     end
 end
 function ShowScenePanel()
