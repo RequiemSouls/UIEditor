@@ -22,6 +22,26 @@ function AddChild(parent, node)
     table.insert(parent.children, node)
 end
 
+function MoveAction(action, parentId)
+    local parent = FindNode(parentId)
+    if parent then
+        DeleteAction(action)
+        table.insert(parent.children, action)
+    end
+end
+
+function DeleteActionInChildren(parent, action)
+    for index, child in ipairs(parent.children) do
+        if child == action then
+            table.remove(parent.children, index)
+            return true
+        end
+        if DeleteActionInChildren(child, action) then
+            return true
+        end
+    end
+end
+
 function DeleteAction(action)
     if SelectNode == nil then
         return
@@ -29,12 +49,16 @@ function DeleteAction(action)
 
     for k, v in pairs(SelectNode.inAction) do
         if v == action then
-            SelectNode.inAction[k] = nil
+            table.remove(SelectNode.inAction, k)
+        elseif type(v) == "table" then
+            DeleteActionInChildren(v, action)
         end
     end
     for k, v in pairs(SelectNode.outAction) do
         if v == action then
-            SelectNode.outAction[k] = nil
+            table.remove(SelectNode.outAction, k)
+        elseif type(v) == "table" then
+            DeleteActionInChildren(v, action)
         end
     end
 end
@@ -72,18 +96,22 @@ function FindNode(id, root)
         end
     end
     if root.inAction ~= nil then
-        for _,child in ipairs(root.inAction) do
-            local node = FindNode(id, child)
-            if node then
-                return node
+        for _,child in pairs(root.inAction) do
+            if type(child) == "table" then
+                local node = FindNode(id, child)
+                if node then
+                    return node
+                end
             end
         end
     end
     if root.outAction ~= nil then
-        for _,child in ipairs(root.outAction) do
-            local node = FindNode(id, child)
-            if node then
-                return node
+        for _,child in pairs(root.outAction) do
+            if type(child) == "table" then
+                local node = FindNode(id, child)
+                if node then
+                    return node
+                end
             end
         end
     end

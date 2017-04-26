@@ -1,25 +1,29 @@
 function Move_action_tostring(action)
-    return string.format("[%s %.2f]: %.2f_%.2f,%f", action.type, action.id, action.position[1], action.position[2], action.time)
+    return string.format("[%s %d]: %.2f_%.2f,%f", action.type, action.id, action.position[1], action.position[2], action.time)
 end
 
 function Scale_action_tostring(action)
-    return string.format("[%s %.2f]: %.2f_%.2f,%f", action.type, action.id, action.scale[1], action.scale[2], action.time)
+    return string.format("[%s %d]: %.2f_%.2f,%f", action.type, action.id, action.scale[1], action.scale[2], action.time)
 end
 
 function Rotate_action_tostring(action)
-    return string.format("[%s %.2f] : %.2f,%f", action.type, action.id, action.rotate, action.time)
+    return string.format("[%s %d] : %.2f,%f", action.type, action.id, action.rotate, action.time)
 end
 
 function FadeIn_action_tostring(action)
-    return string.format("[%s %.2f] : %.2f", action.type, action.id, action.time)
+    return string.format("[%s %d] : %.2f", action.type, action.id, action.time)
 end
 
 function FadeOut_action_tostring(action)
-    return string.format("[%s %.2f] : %.2f", action.type, action.id, action.time)
+    return string.format("[%s %d] : %.2f", action.type, action.id, action.time)
 end
 
 function Delay_action_tostring(action)
-    return string.format("[%s %.2f] : %.2f", action.type, action.id, action.time)
+    return string.format("[%s %d] : %.2f", action.type, action.id, action.time)
+end
+
+function CallFunc_action_tostring(action)
+    return string.format("[%s %d] : %s", action.type, action.id, action.event)
 end
 
 local function ShowAction(action)
@@ -67,6 +71,19 @@ local function ShowActionMenu(parent)
     if imgui.Button("Add Delay") then
         table.insert(parent, CreateNode(Delay_action))
     end
+    imgui.SameLine()
+    if imgui.Button("Add CallFunc") then
+        table.insert(parent, CreateNode(CallFunc_action))
+    end
+
+    local isEdit, id =  imgui.DragInt("MoveAction###ActionMove", -1)
+    if SelectAction then
+        if isEdit then
+            if imgui.IsKeyPressed(257) then
+                MoveAction(SelectAction, id)
+            end
+        end
+    end
 end
 
 local function ShowCommonMenu(data)
@@ -79,6 +96,7 @@ local function ShowCommonMenu(data)
         DeleteAction(SelectAction)
         SelectAction = nil
     end
+
 end
 
 function ShowActionEditor(node, key)

@@ -39,7 +39,7 @@ end
 
 function ShowSelectResRootPanel()
     imgui.Begin("Select Resource Root Path")
-    local isEdit, str = imgui.CreateInput("res root path", ResourceRootPath or "/Users/zhe/Documents/qile/trunk/Poker/")
+    local isEdit, str = imgui.CreateInput("res root path", ResourceRootPath or "/Users/zhe/Documents/qile/trunk/Poker/res/")
     if imgui.IsKeyPressed(257) then
         ResourceRootPath = str
     end

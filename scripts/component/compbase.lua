@@ -18,6 +18,7 @@ CompBase.name = {d = "node", t = "string"}
 CompBase.anchor = {d = {0.5, 0.5}, t = "vec2"}
 CompBase.position = {d = {0.0, 0.0}, t = "vec2"}
 CompBase.zorder = {d = 0, t = "int"}
+CompBase.alpha = {d = 255, t = "int"}
 CompBase.scale = {d = {1.0, 1.0}, t = "vec2"}
 CompBase.rotation = {d = 0, t = "int"}
 CompBase.inAction = {d = {}, t = "action"}
@@ -34,6 +35,13 @@ Button.type = {d = "Button", rv = false, t = "string"}
 Button.name = {d = "button", t = "string"}
 Button.display = {d = "", t = "texture"}
 Button.second = {d = "", t = "texture"}
+
+Label = compClone(CompBase)
+Label.type = {d = "Label", rv = false, t = "string"}
+Label.name = {d = "label", t = "string"}
+Label.text = {d = " ", t = "string"}
+Label.size = {d = 24, t = "int"}
+Label.size = {d = {0, 0, 0, 1}, t = "color"}
 
 Base_action = {}
 Base_action.id = {d = 0, rv = false, t = "int"}
@@ -61,3 +69,7 @@ FadeIn_action.type = {d = "FadeIn_action", rv = false, t = "string"}
 
 FadeOut_action = compClone(Base_action)
 FadeOut_action.type = {d = "FadeOut_action", rv = false, t = "string"}
+
+CallFunc_action = compClone(Base_action)
+CallFunc_action.type = {d = "CallFunc_action", rv = false, t = "string"}
+CallFunc_action.event = {d = "eventName", t = "string"}

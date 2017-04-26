@@ -11,7 +11,8 @@ local function ShowNode(node, basex, basey, basesx, basesy)
     local epx = spx + w
     local epy = spy - h
     if tex then
-        imgui.DrawList_AddImage(tex.id, spx, spy, epx, epy, 0, 0, 1, 1, 0xffffffff)
+        imgui.DrawList_AddImage(tex.id, spx, spy, epx, epy, 0, 0, 1, 1,
+                                0x00ffffff + 0xff000000 * node.alpha / 255)
     end
     for _, child in ipairs(node.children) do
         if node.type == "CompBase" then

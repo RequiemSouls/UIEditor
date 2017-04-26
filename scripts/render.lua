@@ -13,14 +13,17 @@ imgui.SameLine()
 if imgui.Button("saveConfig") then
     SaveConfig()
 end
-if imgui.Button("Add Node on selected") then
+if imgui.Button("Add Node") then
     AddNodeAtSelected(CompBase)
 end
-if imgui.Button("Add Image on selected") then
+if imgui.Button("Add Image") then
     AddNodeAtSelected(Image)
 end
-if imgui.Button("Add Button on selected") then
+if imgui.Button("Add Button") then
     AddNodeAtSelected(Button)
+end
+if imgui.Button("Add Label") then
+    AddNodeAtSelected(Label)
 end
 if imgui.Button("Delete selected") then
     DeleteNode(SelectNode)

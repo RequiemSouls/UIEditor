@@ -1,4 +1,7 @@
 function GetTexture(filepath)
+    if not filepath then
+        return nil
+    end
     if not ResourceRootPath then
         return
     end

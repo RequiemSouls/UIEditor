@@ -15,14 +15,37 @@ FunFilter = ""
 globalScale = 0.5
 LogData = {}
 
+local imguiStack = {}
+function InitImguiStack()
+    imguibegin = imgui.Begin
+    imgui.Begin = function(...)
+        table.insert(imguiStack, "beign")
+        imguibegin(...)
+    end
+
+    imguiend = imgui.End
+    imgui.End = function()
+        table.remove(imguiStack, #imguiStack)
+        imguiend()
+    end
+end
+
 function __G__TRACKBACK__(errorMsg)
     local slice = "\n------------------------------------------------"
     local preEx = ""
     local str = preEx ..errorMsg .. "\n " .. debug.traceback() .. slice
     Error(str)
+
+    for k, v in ipairs(imguiStack) do
+        imguiend()
+    end
+    imguiStack = {}
 end
 
 function renderRoot()
+    if imguibegin == nil then
+        InitImguiStack()
+    end
     dofile("./scripts/util/functionutils.lua")
 
     dofile("./scripts/panel/displaypanel.lua")
