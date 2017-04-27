@@ -19,11 +19,15 @@ function Editor.texture(node, key)
     _, node[key] = imgui.CreateInput(key.."###"..node.id .. key, node[key])
 end
 
+function Editor.bool(node, key)
+    _, node[key] = imgui.Checkbox(key.."###"..node.id..key, node[key])
+end
+
 function Editor.color(node, key)
-    _, node[key][1] = imgui.DragFloat(key..".r###"..node.id..key.."r", node[key][1])
-    _, node[key][2] = imgui.DragFloat(key..".g###"..node.id..key.."g", node[key][2])
-    _, node[key][3] = imgui.DragFloat(key..".b###"..node.id..key.."b", node[key][3])
-    _, node[key][4] = imgui.DragFloat(key..".a###"..node.id..key.."a", node[key][4])
+    _, node[key][1] = imgui.DragInt(key..".r###"..node.id..key.."r", node[key][1])
+    _, node[key][2] = imgui.DragInt(key..".g###"..node.id..key.."g", node[key][2])
+    _, node[key][3] = imgui.DragInt(key..".b###"..node.id..key.."b", node[key][3])
+    _, node[key][4] = imgui.DragInt(key..".a###"..node.id..key.."a", node[key][4])
 end
 
 function Editor.ease(node, key)

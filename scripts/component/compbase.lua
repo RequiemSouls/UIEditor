@@ -33,6 +33,7 @@ Image.display = {d = "", t = "texture"}
 Button = compClone(CompBase)
 Button.type = {d = "Button", rv = false, t = "string"}
 Button.name = {d = "button", t = "string"}
+Button.hasEffect = {d = true, t = "bool"}
 Button.display = {d = "", t = "texture"}
 Button.second = {d = "", t = "texture"}
 
@@ -41,7 +42,7 @@ Label.type = {d = "Label", rv = false, t = "string"}
 Label.name = {d = "label", t = "string"}
 Label.text = {d = " ", t = "string"}
 Label.size = {d = 24, t = "int"}
-Label.size = {d = {0, 0, 0, 1}, t = "color"}
+Label.color = {d = {255, 255, 255, 255}, t = "color"}
 
 Base_action = {}
 Base_action.id = {d = 0, rv = false, t = "int"}
