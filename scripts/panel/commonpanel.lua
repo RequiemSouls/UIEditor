@@ -26,6 +26,7 @@ end
 
 function ShowOpenFilePanel()
     imgui.Begin("Open Config")
+    imgui.SetKeyboardFocusHere()
     local isEdit, str = imgui.CreateInput("open path", SaveFilePath or "")
     if imgui.IsKeyPressed(257) then
         SaveFilePath = str
@@ -39,7 +40,8 @@ end
 
 function ShowSelectResRootPanel()
     imgui.Begin("Select Resource Root Path")
-    local isEdit, str = imgui.CreateInput("res root path", ResourceRootPath or "/Users/zhe/Documents/qile/trunk/Poker/res/")
+    imgui.SetKeyboardFocusHere()
+    local isEdit, str = imgui.CreateInput("res root path", ResourceRootPath or "/Users/zhe/Documents/qile/trunk/wz_mahjong/res/")
     if imgui.IsKeyPressed(257) then
         ResourceRootPath = str
     end

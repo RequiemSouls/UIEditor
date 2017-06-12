@@ -21,7 +21,7 @@ local function ShowNode(node)
     if node == SelectNode then
         flag = SelectFlag
     end
-    local isOpen = imgui.TreeNodeEx(string.format("%s : %d", node.name, node.id), flag)
+    local isOpen = imgui.TreeNodeEx(string.format("%s : %s", node.name, node.type), flag)
     if imgui.IsItemClicked() then
         Debug("select node id :" .. node.id)
         SelectNode = node

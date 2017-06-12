@@ -24,6 +24,7 @@ CompBase.rotation = {d = 0, t = "int"}
 CompBase.inAction = {d = {}, t = "action"}
 CompBase.outAction = {d = {}, t = "action"}
 CompBase.display = {d = "icon_red_mark.png", t = "texture"}
+CompBase.visible = {d = true, t = "bool"}
 
 Image = compClone(CompBase)
 Image.type = {d = "Image", rv = false, t = "string"}
@@ -43,6 +44,20 @@ Label.name = {d = "label", t = "string"}
 Label.text = {d = " ", t = "string"}
 Label.size = {d = 24, t = "int"}
 Label.color = {d = {255, 255, 255, 255}, t = "color"}
+
+TTFLabel = compClone(Label)
+TTFLabel.type = {d = "TTFLabel", rv = false, t = "string"}
+TTFLabel.name = {d = "BMFont", t = "string"}
+TTFLabel.font = {d = " ", t = "string"}
+TTFLabel.color = nil
+
+Image9 = compClone(CompBase)
+Image9.type = {d = "Image9", rv = false, t = "string"}
+Image9.name = {d = "image9", t = "string"}
+Image9.display = {d = "", t = "texture"}
+Image9.rect_p = {d = {0, 0}, t = "vec2"}
+Image9.rect_s = {d = {100, 100}, t = "vec2"}
+Image9.size = {d = {100, 100}, t = "vec2"}
 
 Base_action = {}
 Base_action.id = {d = 0, rv = false, t = "int"}
